@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupHome()
         setupLabel()
+        setupTextField()
     }
 
     func setupHome() {
@@ -31,6 +32,7 @@ class HomeViewController: UIViewController {
         self.title = "AskQueue"
         setupRightButton()
     }
+
     func setupRightButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                  target: self,
@@ -64,6 +66,29 @@ class HomeViewController: UIViewController {
         label.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
         label.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         label.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
+    }
+
+    func setupTextField() {
+        codeInput = UITextField(frame: .zero)
+        guard let textField = codeInput, let label = msgLabel else {
+            return
+        }
+        textField.layer.cornerRadius = self.view.frame.width * 0.05
+        textField.clipsToBounds = true
+
+        textField.layer.borderColor = CGColor(srgbRed: 240/255,
+                                              green: 240/255,
+                                              blue: 240/255,
+                                              alpha: 1)
+        textField.layer.borderWidth = 2
+
+        self.view.addSubview(textField)
+
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0).isActive = true
+        textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
 
     @objc func createQueue() {
