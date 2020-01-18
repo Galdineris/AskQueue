@@ -11,18 +11,32 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+// MARK: Variables
     var msgLabel: UILabel?
     var inputTextField: UITextField?
+    var textToLabel: NSLayoutConstraint?
+    var textToTop: NSLayoutConstraint?
     var connectButton: UIButton?
+    let textFieldDelegate = TextFieldDelegate()
 
+// MARK: System Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHome()
         setupLabel()
         setupTextField()
         setupButton()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 
+// MARK: Visual Components Setups
     func setupHome() {
         self.view.backgroundColor = UIColor.AskQueue.black
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -34,8 +48,6 @@ class HomeViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                  target: self,
                                                                  action: #selector(createQueue))
-        self.navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(.init(horizontal: 10, vertical: 20),
-                                                                           for: .default)
         self.navigationController?.navigationBar.tintColor = UIColor.AskQueue.lightGreen
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.AskQueue.white]
@@ -71,9 +83,13 @@ class HomeViewController: UIViewController {
         }
         textField.layer.cornerRadius = self.view.frame.width * 0.05
         textField.clipsToBounds = true
-
         textField.layer.borderColor = UIColor.AskQueue.white.cgColor
         textField.layer.borderWidth = 2
+        textField.textAlignment = .center
+        textField.tag = 1
+        textField.delegate = textFieldDelegate
+
+        textField.textColor = UIColor.AskQueue.white
 
         let tap = UITapGestureRecognizer(target: self.view,
                                          action: #selector(UIView.endEditing(_:)))
@@ -82,7 +98,10 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
 
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20).isActive = true
+        textToLabel = textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20)
+        textToTop = textField.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor
+            ?? self.view.topAnchor, constant: 20)
+        textToLabel?.isActive = true
         textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
         textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
@@ -113,12 +132,31 @@ class HomeViewController: UIViewController {
         button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
 
+// MARK: Trigger Action Functions
     @objc func createQueue() {
         print("created Queue")
     }
 
     @objc func joinQueue() {
+        inputTextField?.resignFirstResponder()
         print("joined Queue")
     }
 
+    @objc func keyboardWillShow() {
+        UIView.animate(withDuration: 0.5) {
+            self.textToLabel?.isActive = false
+            self.textToTop?.isActive = true
+            self.msgLabel?.isHidden = true
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func keyboardWillHide() {
+        UIView.animate(withDuration: 0.5) {
+            self.textToTop?.isActive = false
+            self.textToLabel?.isActive = true
+            self.msgLabel?.isHidden = false
+            self.view.layoutIfNeeded()
+        }
+    }
 }
