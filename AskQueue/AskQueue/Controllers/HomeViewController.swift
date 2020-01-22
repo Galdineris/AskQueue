@@ -137,7 +137,6 @@ class HomeViewController: UIViewController {
 // MARK: Triggered Functions
     @objc func createQueue() {
         let registerViewController = RegisterViewController()
-        registerViewController.modalPresentationStyle = .fullScreen
         registerViewController.navigationItem.largeTitleDisplayMode = .never
         registerViewController.navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.pushViewController(registerViewController, animated: true)

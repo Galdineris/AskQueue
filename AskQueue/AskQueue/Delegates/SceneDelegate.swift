@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         nav1.hidesBarsOnTap = false
         nav1.hidesBarsOnSwipe = false
         nav1.hidesBarsWhenVerticallyCompact = false
-        let viewController = HomeViewController()
+        let viewController = DetailViewController()
         nav1.viewControllers = [viewController]
         window?.rootViewController = nav1
         window?.makeKeyAndVisible()

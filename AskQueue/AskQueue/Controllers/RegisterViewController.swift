@@ -17,9 +17,10 @@ class RegisterViewController: UIViewController {
     var animationConstraints: [NSLayoutConstraint]?
     let textFieldDelegate = TextFieldDelegate()
 
+// MARK: System Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScreen()
+        controllerSetup()
         setupAutolayout()
         createTextFields()
         createLabels()
@@ -35,21 +36,22 @@ class RegisterViewController: UIViewController {
                                                object: nil)
     }
 
-    func setupScreen() {
+// MARK: Visual Components Setups
+    func controllerSetup() {
         self.view.backgroundColor = AskQueueColors.black
         navigationController?.navigationBar.barTintColor = AskQueueColors.lightGreen
         navigationController?.navigationBar.tintColor = AskQueueColors.white
         navigationController?.hidesBarsWhenKeyboardAppears = false
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: AskQueueColors.white]
-        self.title = "Criar Fila"
+        self.title = "CriarFila"
+        animationConstraints = []
     }
 
     func setupAutolayout() {
         var fields: [UIView] = []
         let margins = view.layoutMarginsGuide
         let guides = view.safeAreaLayoutGuide
-        animationConstraints = []
         for _ in 0..<3 {
             let field = UIView(frame: .zero)
             self.view.addSubview(field)
@@ -104,24 +106,10 @@ class RegisterViewController: UIViewController {
             textField.keyboardAppearance = .dark
             textField.textAlignment = .natural
             textField.tag = 2
+            textField.font = UIFont.preferredFont(forTextStyle: .title3)
             textField.delegate = textFieldDelegate
             textField.textColor = AskQueueColors.white
             fields.append(textField)
-
-            let border = UIView(frame: .zero)
-            border.layer.cornerRadius = 45/2
-            border.layer.borderColor = AskQueueColors.white.cgColor
-            border.layer.borderWidth = 2
-            border.clipsToBounds = true
-            textField.addSubview(border)
-            border.translatesAutoresizingMaskIntoConstraints = false
-            border.centerXAnchor.constraint(equalTo: textField.centerXAnchor).isActive = true
-            border.centerYAnchor.constraint(equalTo: textField.centerYAnchor).isActive = true
-            border.heightAnchor.constraint(equalTo: textField.heightAnchor,
-                                           constant: 4).isActive = true
-            border.widthAnchor.constraint(equalTo: textField.widthAnchor,
-                                          constant: 45).isActive = true
-            border.isUserInteractionEnabled = false
         }
         inputTextFields = fields
     }
@@ -132,25 +120,10 @@ class RegisterViewController: UIViewController {
         textView.keyboardAppearance = .dark
         textView.backgroundColor = AskQueueColors.black
         textView.textAlignment = .natural
+        textView.font = UIFont.preferredFont(forTextStyle: .title3)
         textView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         textView.textColor = AskQueueColors.white
         textView.clipsToBounds = false
-
-        let border = UIView(frame: .zero)
-        border.layer.cornerRadius = 45/2
-        border.layer.borderColor = AskQueueColors.white.cgColor
-        border.layer.borderWidth = 2
-        border.clipsToBounds = true
-        border.translatesAutoresizingMaskIntoConstraints = false
-        textView.addSubview(border)
-        border.centerXAnchor.constraint(equalTo: textView.centerXAnchor).isActive = true
-        border.centerYAnchor.constraint(equalTo: textView.centerYAnchor).isActive = true
-        border.heightAnchor.constraint(equalTo: textView.heightAnchor,
-                                       constant: 4).isActive = true
-        border.widthAnchor.constraint(equalTo: textView.widthAnchor,
-                                      constant: 45).isActive = true
-        border.isUserInteractionEnabled = false
-
         inputTextView = textView
     }
 
@@ -181,9 +154,25 @@ class RegisterViewController: UIViewController {
                                                    constant: 45/2).isActive = true
             fields[index].trailingAnchor.constraint(equalTo: views[index].trailingAnchor,
                                                     constant: -45/2).isActive = true
+
+            let border = UIView(frame: .zero)
+            border.layer.cornerRadius = 45/2
+            border.layer.borderColor = AskQueueColors.white.cgColor
+            border.layer.borderWidth = 2
+            border.clipsToBounds = true
+            border.isUserInteractionEnabled = false
+            fields[index].addSubview(border)
+            border.translatesAutoresizingMaskIntoConstraints = false
+            border.centerXAnchor.constraint(equalTo: fields[index].centerXAnchor).isActive = true
+            border.centerYAnchor.constraint(equalTo: fields[index].centerYAnchor).isActive = true
+            border.heightAnchor.constraint(equalTo: fields[index].heightAnchor,
+                                           constant: 4).isActive = true
+            border.widthAnchor.constraint(equalTo: fields[index].widthAnchor,
+                                          constant: 45).isActive = true
         }
     }
 
+// MARK: Triggered Functions
     @objc func keyboardWillShow() {
         for constraint in animationConstraints ?? [] {
             constraint.isActive = false
@@ -225,6 +214,7 @@ class RegisterViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
 extension UITextView {
     func addDoneButton(title: String, target: Any, selector: Selector) {
 
