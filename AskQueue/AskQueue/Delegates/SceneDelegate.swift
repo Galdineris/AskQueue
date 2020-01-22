@@ -18,6 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let nav1 = UINavigationController()
+        nav1.hidesBarsWhenKeyboardAppears = false
+        nav1.navigationBar.prefersLargeTitles = true
+        nav1.hidesBarsOnTap = false
+        nav1.hidesBarsOnSwipe = false
+        nav1.hidesBarsWhenVerticallyCompact = false
         let viewController = HomeViewController()
         nav1.viewControllers = [viewController]
         window?.rootViewController = nav1

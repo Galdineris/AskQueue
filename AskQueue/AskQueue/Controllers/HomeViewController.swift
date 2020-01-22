@@ -38,8 +38,11 @@ class HomeViewController: UIViewController {
 
 // MARK: Visual Components Setups
     func setupHome() {
-        self.view.backgroundColor = UIColor.AskQueue.black
+        self.view.backgroundColor = AskQueueColors.black
+        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: AskQueueColors.white]
         self.title = "AskQueue"
         setupRightButton()
     }
@@ -48,9 +51,7 @@ class HomeViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                  target: self,
                                                                  action: #selector(createQueue))
-        self.navigationController?.navigationBar.tintColor = UIColor.AskQueue.lightGreen
-        self.navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.AskQueue.white]
+        self.navigationController?.navigationBar.tintColor = AskQueueColors.lightGreen
     }
 
     func setupLabel() {
@@ -63,7 +64,7 @@ class HomeViewController: UIViewController {
         label.text = "Insira abaixo \no código de \numa fila"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.textColor = UIColor.AskQueue.white
+        label.textColor = AskQueueColors.white
         label.sizeToFit()
 
         self.view.addSubview(label)
@@ -71,9 +72,9 @@ class HomeViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        label.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        label.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 125).isActive = true
     }
 
     func setupTextField() {
@@ -81,15 +82,16 @@ class HomeViewController: UIViewController {
         guard let textField = inputTextField, let label = msgLabel else {
             return
         }
-        textField.layer.cornerRadius = self.view.frame.width * 0.05
+        textField.layer.cornerRadius = 45/2
         textField.clipsToBounds = true
-        textField.layer.borderColor = UIColor.AskQueue.white.cgColor
+        textField.layer.borderColor = AskQueueColors.white.cgColor
         textField.layer.borderWidth = 2
         textField.textAlignment = .center
         textField.tag = 1
+        textField.keyboardAppearance = .dark
         textField.delegate = textFieldDelegate
 
-        textField.textColor = UIColor.AskQueue.white
+        textField.textColor = AskQueueColors.white
 
         let tap = UITapGestureRecognizer(target: self.view,
                                          action: #selector(UIView.endEditing(_:)))
@@ -102,9 +104,9 @@ class HomeViewController: UIViewController {
         textToTop = textField.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor
             ?? self.view.topAnchor, constant: 20)
         textToLabel?.isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        textField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
+        textField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
 
     func setupButton() {
@@ -112,28 +114,33 @@ class HomeViewController: UIViewController {
         guard let button = connectButton, let textField = inputTextField else {
             return
         }
-        button.layer.cornerRadius = self.view.frame.width * 0.05
+        button.layer.cornerRadius = 55/2
         button.clipsToBounds = true
         button.setTitle("Entrar", for: .normal)
         button.addTarget(self, action: #selector(joinQueue),
                          for: .touchDown)
-        button.setTitleColor(UIColor.AskQueue.darkGreen,
+        button.setTitleColor(AskQueueColors.darkGreen,
                              for: .highlighted)
-        button.setTitleColor(UIColor.AskQueue.white,
+        button.setTitleColor(AskQueueColors.white,
                              for: .normal)
-        button.backgroundColor = UIColor.AskQueue.lightGreen
+        button.backgroundColor = AskQueueColors.lightGreen
 
         self.view.addSubview(button)
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20).isActive = true
-        button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        button.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
 
-// MARK: Trigger Action Functions
+// MARK: Triggered Functions
     @objc func createQueue() {
+        let registerViewController = RegisterViewController()
+        registerViewController.modalPresentationStyle = .fullScreen
+        registerViewController.navigationItem.largeTitleDisplayMode = .never
+        registerViewController.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.pushViewController(registerViewController, animated: true)
         print("created Queue")
     }
 
