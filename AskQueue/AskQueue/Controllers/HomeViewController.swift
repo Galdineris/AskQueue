@@ -26,6 +26,9 @@ class HomeViewController: UIViewController {
         setupLabel()
         setupTextField()
         setupButton()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -34,6 +37,12 @@ class HomeViewController: UIViewController {
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
 // MARK: Visual Components Setups
@@ -145,6 +154,15 @@ class HomeViewController: UIViewController {
 
     @objc func joinQueue() {
         inputTextField?.resignFirstResponder()
+        let detailViewController = DetailViewController()
+        detailViewController.navigationItem.largeTitleDisplayMode = .never
+        detailViewController.navigationController?.navigationBar.prefersLargeTitles = false
+        if inputTextField?.text != "" {
+            detailViewController.joinQueueBool = true
+        } else {
+            detailViewController.joinQueueBool = false
+        }
+        navigationController?.pushViewController(detailViewController, animated: true)
         print("joined Queue")
     }
 

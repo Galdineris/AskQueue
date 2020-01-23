@@ -26,6 +26,9 @@ class RegisterViewController: UIViewController {
         createLabels()
         createTextViews()
         insertElementsInViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -34,6 +37,12 @@ class RegisterViewController: UIViewController {
                                                selector: #selector(self.keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
 // MARK: Visual Components Setups
