@@ -59,7 +59,7 @@ class DetailViewController: UIViewController {
             label.adjustsFontForContentSizeCategory = true
             label.lineBreakMode = .byWordWrapping
             label.numberOfLines = 0
-            label.font = UIFont.preferredFont(forTextStyle: .title1)
+            label.font = UIFont.rounded22Bold
             label.textColor = AskQueueColors.white
             label.sizeToFit()
             labels.append(label)
@@ -67,7 +67,7 @@ class DetailViewController: UIViewController {
         labels[0].text = "Código da Sala: " + (queueCode ?? "000000")
         labels[1].text = "Tema: " + (queueTitle ?? "Erro de Conexão")
         labels[2].text = "Autor: " + (queueAutor ?? "Favor, recarregar a página")
-        labels[2].font = UIFont.preferredFont(forTextStyle: .title3)
+        labels[2].font = UIFont.rounded17Regular
         infoViews?.append(contentsOf: labels)
     }
 
@@ -78,9 +78,9 @@ class DetailViewController: UIViewController {
         textView.textAlignment = .natural
         textView.isEditable = false
         textView.textColor = AskQueueColors.white
-        textView.clipsToBounds = false
+        textView.clipsToBounds = true
         textView.text = "Pauta: \n" + (queueDescription ?? "")
-        textView.font = UIFont.preferredFont(forTextStyle: .body)
+        textView.font = UIFont.rounded17Regular
         infoViews?.append(textView)
     }
 
@@ -124,7 +124,9 @@ class DetailViewController: UIViewController {
             }
         }
         views[views.count - 1].bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
-        views[views.count - 1].heightAnchor.constraint(equalToConstant: 55).isActive = true
+        if joinQueueBool {
+            views[views.count - 1].heightAnchor.constraint(equalToConstant: 55).isActive = true
+        }
     }
 
     func updateInformation() {

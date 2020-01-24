@@ -71,7 +71,7 @@ class QueueViewController: UIViewController {
         views[1].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.2).isActive = true
         views[2].heightAnchor.constraint(equalToConstant: 75).isActive = true
         views[3].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.06).isActive = true
-        views[5].heightAnchor.constraint(equalToConstant: 65).isActive = true
+        views[5].heightAnchor.constraint(equalToConstant: 75).isActive = true
 
         viewsContainers = views
     }
@@ -84,7 +84,7 @@ class QueueViewController: UIViewController {
             label.adjustsFontForContentSizeCategory = true
             label.lineBreakMode = .byWordWrapping
             label.numberOfLines = 0
-            label.font = UIFont.preferredFont(forTextStyle: .title2)
+            label.font = UIFont.rounded17Regular
             label.textAlignment = .center
             label.textColor = AskQueueColors.white
             label.sizeToFit()
@@ -99,19 +99,21 @@ class QueueViewController: UIViewController {
                 labels.append(label)
             }
         }
-        let timeFont = UIFont.preferredFont(forTextStyle: .title1).withSize(64)
+
         queueCodeLabel?.text = "000000"
-        queueCodeLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        queueCodeLabel?.font = UIFont.rounded17Regular
         timeLabel?.text = "00:30"
-        timeLabel?.font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: timeFont)
+        timeLabel?.font = UIFont.default64RegularItalic
         currentNameLabel?.text = "Claire"
-        currentNameLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        currentNameLabel?.font = UIFont.rounded22Regular
         currentNameLabel?.textAlignment = .left
 
         labels[0].text = "Código da Fila"
-        labels[0].font = UIFont.preferredFont(forTextStyle: .headline)
+        labels[0].font = UIFont.rounded17Regular
         labels[1].text = "Tempo Restante de Fala"
+        labels[1].font = UIFont.rounded22Bold
         labels[2].text = "Próximos a falar"
+        labels[2].font = UIFont.rounded22Regular
 
         staticLabels = labels
     }
@@ -147,6 +149,9 @@ class QueueViewController: UIViewController {
     func createTableView() {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints  = false
+        tableView.backgroundColor = AskQueueColors.black
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = AskQueueColors.white.withAlphaComponent(0.2)
         queueTableView = tableView
     }
 
@@ -196,7 +201,7 @@ class QueueViewController: UIViewController {
         }
         views[5].addSubview(joinQueue)
         joinQueue.topAnchor.constraint(equalTo: views[5].topAnchor, constant: 10).isActive = true
-        joinQueue.bottomAnchor.constraint(equalTo: views[5].bottomAnchor).isActive = true
+        joinQueue.bottomAnchor.constraint(equalTo: views[5].bottomAnchor, constant: -10).isActive = true
         joinQueue.leadingAnchor.constraint(equalTo: views[5].leadingAnchor).isActive = true
         joinQueue.trailingAnchor.constraint(equalTo: views[5].trailingAnchor).isActive = true
     }

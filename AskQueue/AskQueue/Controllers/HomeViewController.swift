@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
         guard let label = msgLabel else {
             return
         }
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.font = UIFont.rounded34Regular
         label.adjustsFontForContentSizeCategory = true
         label.text = "Insira abaixo \no código de \numa fila"
         label.lineBreakMode = .byWordWrapping

@@ -95,7 +95,7 @@ class RegisterViewController: UIViewController {
         for _ in 0..<3 {
             let label = UILabel(frame: .zero)
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.font = UIFont.preferredFont(forTextStyle: .title3)
+            label.font = UIFont.rounded17Regular
             label.adjustsFontForContentSizeCategory = true
             label.textColor = AskQueueColors.white
             label.sizeToFit()
