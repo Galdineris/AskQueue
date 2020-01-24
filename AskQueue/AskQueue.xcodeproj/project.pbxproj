@@ -17,6 +17,7 @@
 		F2981DD823D37F5A00C98F4E /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2981DD723D37F5A00C98F4E /* TextFieldDelegate.swift */; };
 		F2981DDA23D3C6A000C98F4E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */; };
 		F2BD567623D8C2740041E917 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD567523D8C2740041E917 /* DetailViewController.swift */; };
+		F2BD567823D9FF970041E917 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD567723D9FF970041E917 /* QueueViewController.swift */; };
 		F2DA345023D0F2CB001F6DA0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		F2981DD723D37F5A00C98F4E /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F2BD567523D8C2740041E917 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F2BD567723D9FF970041E917 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 				F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */,
 				F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */,
 				F2BD567523D8C2740041E917 /* DetailViewController.swift */,
+				F2BD567723D9FF970041E917 /* QueueViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2BD567823D9FF970041E917 /* QueueViewController.swift in Sources */,
 				F2BD567623D8C2740041E917 /* DetailViewController.swift in Sources */,
 				F2DA345023D0F2CB001F6DA0 /* HomeViewController.swift in Sources */,
 				F262583923D0D7D8003A6FDE /* ViewController.swift in Sources */,

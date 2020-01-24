@@ -15,9 +15,9 @@ class RegisterViewController: UIViewController {
     var inputTextFields: [UITextField]?
     var inputTextView: UITextView?
     var animationConstraints: [NSLayoutConstraint]?
-    let textFieldDelegate = TextFieldDelegate()
+    weak var textFieldDelegate = TextFieldDelegate()
 
-// MARK: System Functions
+// MARK: Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         controllerSetup()
@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController {
         navigationController?.hidesBarsWhenKeyboardAppears = false
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: AskQueueColors.white]
-        self.title = "CriarFila"
+        self.title = "Criar Fila"
         animationConstraints = []
     }
 

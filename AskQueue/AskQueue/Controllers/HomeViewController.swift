@@ -17,9 +17,9 @@ class HomeViewController: UIViewController {
     var textToLabel: NSLayoutConstraint?
     var textToTop: NSLayoutConstraint?
     var connectButton: UIButton?
-    let textFieldDelegate = TextFieldDelegate()
+    weak var textFieldDelegate = TextFieldDelegate()
 
-// MARK: System Functions
+// MARK: Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHome()

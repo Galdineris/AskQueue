@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     var joinQueueBool: Bool = false
     private var infoViews: [UIView]?
 
+// MARK: Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupController()
@@ -37,15 +38,16 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
 
+// MARK: Visual Components Setups
     func setupController() {
         self.view.backgroundColor = AskQueueColors.black
-        navigationController?.navigationBar.barTintColor = AskQueueColors.lightGreen
-        navigationController?.navigationBar.tintColor = AskQueueColors.white
+        navigationController?.navigationBar.barTintColor = AskQueueColors.darkGreen
+        navigationController?.navigationBar.tintColor = AskQueueColors.lightGreen
         navigationController?.hidesBarsWhenKeyboardAppears = false
-        self.navigationController?.navigationBar.largeTitleTextAttributes =
+        self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: AskQueueColors.white]
         navigationItem.largeTitleDisplayMode = .never
-        self.title = "CriarFila"
+        self.title = "Detalhes da Fila"
         infoViews = []
     }
 
@@ -100,27 +102,29 @@ class DetailViewController: UIViewController {
     }
 
     func insertElementsIntoView() {
-        guard let labels = infoViews else {
+        guard let views = infoViews else {
             return
         }
 
         let margins = self.view.layoutMarginsGuide
         let guides = self.view.safeAreaLayoutGuide
 
-        for index in 0..<labels.count {
-            self.view.addSubview(labels[index])
-            labels[index].leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-            labels[index].trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        for index in 0..<views.count {
+            self.view.addSubview(views[index])
+            views[index].leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+            views[index].trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
             switch index {
             case 0:
-                labels[0].topAnchor.constraint(equalTo: guides.topAnchor, constant: 40).isActive = true
+                views[0].topAnchor.constraint(equalTo: guides.topAnchor, constant: 40).isActive = true
             case 2:
-                labels[2].topAnchor.constraint(equalTo: labels[1].bottomAnchor, constant: 10).isActive = true
+                views[2].topAnchor.constraint(equalTo: views[1].bottomAnchor, constant: 10).isActive = true
             default:
-                labels[index].topAnchor.constraint(equalTo: labels[index - 1].bottomAnchor, constant: 40).isActive = true
+                views[index].topAnchor.constraint(equalTo: views[index - 1].bottomAnchor,
+                                                   constant: 40).isActive = true
             }
         }
-        labels[labels.count - 1].bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
+        views[views.count - 1].bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
+        views[views.count - 1].heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
 
     func updateInformation() {
@@ -133,6 +137,9 @@ class DetailViewController: UIViewController {
     }
 
     @objc func joinQueue() {
-        print("joined Queue")
+        let queueViewController = QueueViewController()
+        queueViewController.navigationItem.largeTitleDisplayMode = .never
+        queueViewController.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.pushViewController(queueViewController, animated: true)
     }
 }
