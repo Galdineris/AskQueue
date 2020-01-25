@@ -13,6 +13,11 @@
 		F262583F23D0D7D8003A6FDE /* AskQueue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F262583D23D0D7D8003A6FDE /* AskQueue.xcdatamodeld */; };
 		F262584123D0D7DE003A6FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F262584023D0D7DE003A6FDE /* Assets.xcassets */; };
 		F262584423D0D7DE003A6FDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F262584223D0D7DE003A6FDE /* LaunchScreen.storyboard */; };
+		F2981DD623D36F1B00C98F4E /* DesignProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2981DD523D36F1B00C98F4E /* DesignProperties.swift */; };
+		F2981DD823D37F5A00C98F4E /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2981DD723D37F5A00C98F4E /* TextFieldDelegate.swift */; };
+		F2981DDA23D3C6A000C98F4E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */; };
+		F2BD567623D8C2740041E917 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD567523D8C2740041E917 /* DetailViewController.swift */; };
+		F2BD567823D9FF970041E917 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD567723D9FF970041E917 /* QueueViewController.swift */; };
 		F2DA345023D0F2CB001F6DA0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +30,11 @@
 		F262584023D0D7DE003A6FDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F262584323D0D7DE003A6FDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F262584523D0D7DE003A6FDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2981DD523D36F1B00C98F4E /* DesignProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignProperties.swift; sourceTree = "<group>"; };
+		F2981DD723D37F5A00C98F4E /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F2BD567523D8C2740041E917 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F2BD567723D9FF970041E917 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,13 +68,13 @@
 		F262583323D0D7D8003A6FDE /* AskQueue */ = {
 			isa = PBXGroup;
 			children = (
-				F262583423D0D7D8003A6FDE /* AppDelegate.swift */,
-				F262583623D0D7D8003A6FDE /* SceneDelegate.swift */,
+				F2DDCE7D23D2018C007B38F1 /* Delegates */,
 				F2DA344E23D0EF24001F6DA0 /* Controllers */,
 				F262584023D0D7DE003A6FDE /* Assets.xcassets */,
 				F262584223D0D7DE003A6FDE /* LaunchScreen.storyboard */,
 				F262584523D0D7DE003A6FDE /* Info.plist */,
 				F262583D23D0D7D8003A6FDE /* AskQueue.xcdatamodeld */,
+				F2981DD523D36F1B00C98F4E /* DesignProperties.swift */,
 			);
 			path = AskQueue;
 			sourceTree = "<group>";
@@ -74,8 +84,21 @@
 			children = (
 				F262583823D0D7D8003A6FDE /* ViewController.swift */,
 				F2DA344F23D0F2CB001F6DA0 /* HomeViewController.swift */,
+				F2981DD923D3C6A000C98F4E /* RegisterViewController.swift */,
+				F2BD567523D8C2740041E917 /* DetailViewController.swift */,
+				F2BD567723D9FF970041E917 /* QueueViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F2DDCE7D23D2018C007B38F1 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				F262583423D0D7D8003A6FDE /* AppDelegate.swift */,
+				F262583623D0D7D8003A6FDE /* SceneDelegate.swift */,
+				F2981DD723D37F5A00C98F4E /* TextFieldDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,8 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2BD567823D9FF970041E917 /* QueueViewController.swift in Sources */,
+				F2BD567623D8C2740041E917 /* DetailViewController.swift in Sources */,
 				F2DA345023D0F2CB001F6DA0 /* HomeViewController.swift in Sources */,
 				F262583923D0D7D8003A6FDE /* ViewController.swift in Sources */,
+				F2981DD623D36F1B00C98F4E /* DesignProperties.swift in Sources */,
+				F2981DDA23D3C6A000C98F4E /* RegisterViewController.swift in Sources */,
+				F2981DD823D37F5A00C98F4E /* TextFieldDelegate.swift in Sources */,
 				F262583F23D0D7D8003A6FDE /* AskQueue.xcdatamodeld in Sources */,
 				F262583523D0D7D8003A6FDE /* AppDelegate.swift in Sources */,
 				F262583723D0D7D8003A6FDE /* SceneDelegate.swift in Sources */,
