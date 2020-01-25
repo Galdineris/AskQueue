@@ -35,6 +35,12 @@ public enum AskQueueColors {
                        blue: 43/255,
                        alpha: 1)
     }
+    static var red: UIColor {
+        return UIColor(red: 208/255,
+                       green: 43/255,
+                       blue: 77/255,
+                       alpha: 1)
+    }
 }
 
 // MARK: FONTS

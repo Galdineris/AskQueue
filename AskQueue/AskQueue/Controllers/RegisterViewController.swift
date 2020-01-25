@@ -48,8 +48,8 @@ class RegisterViewController: UIViewController {
 // MARK: Visual Components Setups
     func controllerSetup() {
         self.view.backgroundColor = AskQueueColors.black
-        navigationController?.navigationBar.barTintColor = AskQueueColors.lightGreen
-        navigationController?.navigationBar.tintColor = AskQueueColors.white
+        navigationController?.navigationBar.barTintColor = AskQueueColors.darkGreen
+        navigationController?.navigationBar.tintColor = AskQueueColors.lightGreen
         navigationController?.hidesBarsWhenKeyboardAppears = false
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: AskQueueColors.white]

@@ -123,7 +123,7 @@ class DetailViewController: UIViewController {
                                                    constant: 40).isActive = true
             }
         }
-        views[views.count - 1].bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
+        views[views.count - 1].bottomAnchor.constraint(equalTo: guides.bottomAnchor, constant: -10).isActive = true
         if joinQueueBool {
             views[views.count - 1].heightAnchor.constraint(equalToConstant: 55).isActive = true
         }

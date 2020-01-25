@@ -157,11 +157,7 @@ class HomeViewController: UIViewController {
         let detailViewController = DetailViewController()
         detailViewController.navigationItem.largeTitleDisplayMode = .never
         detailViewController.navigationController?.navigationBar.prefersLargeTitles = false
-        if inputTextField?.text != "" {
-            detailViewController.joinQueueBool = true
-        } else {
-            detailViewController.joinQueueBool = false
-        }
+        detailViewController.joinQueueBool = true
         navigationController?.pushViewController(detailViewController, animated: true)
         print("joined Queue")
     }

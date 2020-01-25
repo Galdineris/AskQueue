@@ -36,10 +36,11 @@ class QueueViewController: UIViewController {
 // MARK: Visual Components Setups
     func setupController() {
         self.view.backgroundColor = AskQueueColors.black
-        navigationController?.navigationBar.barTintColor = AskQueueColors.lightGreen
-        navigationController?.navigationBar.tintColor = AskQueueColors.white
+        navigationController?.navigationBar.barTintColor = AskQueueColors.darkGreen
+        navigationController?.navigationBar.tintColor = AskQueueColors.lightGreen
         navigationItem.largeTitleDisplayMode = .never
         self.title = "Fila"
+        createRightBarButton()
         viewsContainers = []
         staticLabels = []
     }
@@ -51,9 +52,6 @@ class QueueViewController: UIViewController {
         for _ in 0..<6 {
             let field = UIView(frame: .zero)
             field.translatesAutoresizingMaskIntoConstraints = false
-//            field.backgroundColor = .green
-//            field.layer.borderColor = UIColor.white.cgColor
-//            field.layer.borderWidth = 2
             views.append(field)
             self.view.addSubview(field)
             field.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
@@ -123,6 +121,7 @@ class QueueViewController: UIViewController {
         for _ in 0..<2 {
             let button = UIButton(frame: .zero)
             button.translatesAutoresizingMaskIntoConstraints = false
+            button.layer.borderColor = AskQueueColors.red.cgColor
             button.layer.cornerRadius = 55/2
             button.clipsToBounds = true
             button.setTitleColor(AskQueueColors.darkGreen,
@@ -142,8 +141,8 @@ class QueueViewController: UIViewController {
         buttons[1].addTarget(self,
                              action: #selector(joinQueue),
                              for: .touchDown)
-        joinQueueButton = buttons[0]
-        interruptButton = buttons[1]
+        interruptButton = buttons[0]
+        joinQueueButton = buttons[1]
     }
 
     func createTableView() {
@@ -154,6 +153,14 @@ class QueueViewController: UIViewController {
         tableView.separatorColor = AskQueueColors.white.withAlphaComponent(0.2)
         queueTableView = tableView
     }
+
+    func createRightBarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize,
+                                                                 target: self,
+                                                                 action: #selector(detailQueue))
+        self.navigationController?.navigationBar.tintColor = AskQueueColors.lightGreen
+    }
+
 
     func insertElements() {
         guard let views =  viewsContainers, let labels = staticLabels, let code = queueCodeLabel, let time = timeLabel,
@@ -207,10 +214,39 @@ class QueueViewController: UIViewController {
     }
 
     @objc func interruptQueue() {
-        print("interrupted")
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            if self?.interruptButton?.backgroundColor == AskQueueColors.lightGreen {
+                self?.interruptButton?.layer.borderWidth = 2
+                self?.interruptButton?.backgroundColor = .clear
+                self?.interruptButton?.setTitle("Cancelar", for: .normal)
+            } else {
+                self?.interruptButton?.layer.borderWidth = 0
+                self?.interruptButton?.backgroundColor = AskQueueColors.lightGreen
+                self?.interruptButton?.setTitle("Adendo", for: .normal)
+            }
+        }
     }
 
     @objc func joinQueue() {
-        print("joined")
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            if self?.joinQueueButton?.backgroundColor == AskQueueColors.lightGreen {
+                self?.joinQueueButton?.layer.borderWidth = 2
+                self?.joinQueueButton?.backgroundColor = .clear
+                self?.joinQueueButton?.setTitle("Cancelar", for: .normal)
+            } else {
+                self?.joinQueueButton?.layer.borderWidth = 0
+                self?.joinQueueButton?.backgroundColor = AskQueueColors.lightGreen
+                self?.joinQueueButton?.setTitle("Ficar na Fila", for: .normal)
+            }
+        }
     }
+
+    @objc func detailQueue() {
+        let detailViewController = DetailViewController()
+        detailViewController.navigationItem.largeTitleDisplayMode = .never
+        detailViewController.navigationController?.navigationBar.prefersLargeTitles = false
+        detailViewController.joinQueueBool = false
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+
 }
