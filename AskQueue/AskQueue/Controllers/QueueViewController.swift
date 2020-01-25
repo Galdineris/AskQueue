@@ -65,7 +65,7 @@ class QueueViewController: UIViewController {
         views[5].topAnchor.constraint(equalTo: views[4].bottomAnchor).isActive = true
         views[5].bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
 
-        views[0].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.1).isActive = true
+        views[0].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.14).isActive = true
         views[1].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.2).isActive = true
         views[2].heightAnchor.constraint(equalToConstant: 75).isActive = true
         views[3].heightAnchor.constraint(equalTo: guides.heightAnchor, multiplier: 0.06).isActive = true
